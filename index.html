@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhi | Web & Brand Designer</title>
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- ANIMATION -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-black: #000000;
+            --brand-red: #e61e25; 
+            --text-white: #ffffff;
+            --text-gray: #a1a1a1;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body { 
+            background-color: var(--bg-black); 
+            color: var(--text-white); 
+            font-family: 'Poppins', sans-serif; 
+            overflow: hidden; /* Prevent scroll during preloader */
+        }
+        
+        ::selection { background: var(--brand-red); color: white; }
+
+        /* --- PRELOADER STYLES --- */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease;
+        }
+
+        .typing-container {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4vw;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            overflow: hidden;
+            border-right: 3px solid var(--brand-red);
+            white-space: nowrap;
+            width: 0;
+            animation: typing 2s steps(15, end) forwards, blink 0.7s infinite;
+        }
+
+        @keyframes typing { from { width: 0 } to { width: 50% } }
+        @keyframes blink { 0%, 100% { border-color: transparent } 50% { border-color: var(--brand-red) } }
+
+        /* --- MUSIC BUTTON STYLES --- */
+        #music-toggle {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 10000;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--brand-red);
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s ease;
+            box-shadow: 0 0 15px rgba(230, 30, 37, 0.3);
+        }
+
+        #music-toggle:hover {
+            transform: scale(1.1);
+            background: var(--brand-red);
+        }
+
+        /* Pulse animation for the button */
+        .pulse-btn {
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(230, 30, 37, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(230, 30, 37, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(230, 30, 37, 0); }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 8%; position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(0, 0, 0, 0.95); border-bottom: 1px solid #111;
+        }
+        .logo { font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .logo span { color: var(--brand-red); }
+        .nav-links a { color: var(--text-gray); text-decoration: none; margin-left: 30px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- TYPOGRAPHY --- */
+        .big-title { font-family: 'Montserrat', sans-serif; font-size: clamp(3.5rem, 12vw, 8.5rem); line-height: 0.85; text-transform: uppercase; }
+        .script-text { font-family: 'Sacramento', cursive; color: var(--brand-red); text-transform: none; font-weight: 400; }
+
+        section { padding: 100px 10%; min-height: 100vh; display: flex; align-items: center; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%; }
+        .red-line { width: 60px; height: 3px; background: var(--brand-red); margin: 25px 0; }
+
+        /* --- HERO --- */
+        .hero { height: 100vh; text-align: center; flex-direction: column; justify-content: center; background: radial-gradient(circle at center, #1a0202 0%, #000 100%); }
+        .hero p { font-size: 1.1rem; margin-bottom: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--brand-red); }
+        .title-wrap { position: relative; display: inline-block; }
+        .creative-overlay { position: absolute; bottom: -25px; right: 0; font-size: 0.7em; }
+        .badge { border: 1px solid var(--brand-red); padding: 12px 30px; border-radius: 50px; font-size: 0.75rem; margin-top: 50px; background: rgba(230, 30, 37, 0.05); }
+
+        /* --- ABOUT --- */
+        .logo-img { width: 100%; max-width: 400px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+
+        /* --- PROJECT CARDS --- */
+        .project-card { 
+            background: #080808; border: 1px solid #1a1a1a; 
+            border-radius: 20px; overflow: hidden; 
+            text-decoration: none; color: white; 
+            display: block; margin-top: 30px; 
+        }
+        .project-img { width: 100%; height: 350px; object-fit: cover; }
+        .project-info { padding: 30px; }
+        .project-info h3 { font-family: 'Montserrat'; font-size: 1.4rem; margin-bottom: 8px; }
+        .project-info p { color: var(--brand-red); font-weight: 700; font-size: 0.8rem; margin-bottom: 5px; }
+
+        /* --- CONTACT --- */
+        .contact-wrap { text-align: center; width: 100%; }
+        .contact-btn { display: inline-flex; align-items: center; gap: 15px; color: var(--text-white); text-decoration: none; font-size: 1.5rem; margin: 20px; font-weight: 600; }
+        .contact-btn i { color: var(--brand-red); }
+
+        /* --- FOOTER --- */
+        footer { 
+            padding: 150px 0; background: #050505; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; 
+        }
+        .footer-bg-text { font-family: 'Montserrat'; font-size: 15vw; color: var(--brand-red); opacity: 0.04; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; }
+        .insta-handle-footer { margin-top: 35px; color: var(--text-white); text-decoration: none; font-size: 1.2rem; letter-spacing: 3px; font-weight: 300; opacity: 0.5; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 5px; position: relative; z-index: 5; }
+
+        @media (max-width: 800px) { 
+            .grid { grid-template-columns: 1fr; text-align: center; } 
+            .nav-links { display: none; } 
+            .big-title { font-size: 3.5rem; } 
+            .typing-container { font-size: 8vw; }
+            .red-line { margin: 20px auto; }
+            @keyframes typing { from { width: 0 } to { width: 85% } }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. AUDIO TAG -->
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 2. MUSIC CONTROL BUTTON -->
+    <button id="music-toggle" class="pulse-btn" title="Toggle Music">
+        <i id="music-icon" class="fas fa-volume-mute"></i>
+    </button>
+
+    <!-- 3. TYPING PRELOADER -->
+    <div id="preloader">
+        <div class="typing-container">Abhi.Designs</div>
+    </div>
+
+    <!-- 4. NAVIGATION -->
+    <nav>
+        <div class="logo">Abhi.<span>Designs</span></div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <p data-aos="fade-down">Web & Brand Designer</p>
+        <div class="title-wrap" data-aos="zoom-in" data-aos-duration="1200">
+            <h1 class="big-title">PORTFOLIO</h1>
+            <h1 class="big-title script-text creative-overlay">Creative</h1>
+        </div>
+        <div class="badge" data-aos="fade-up" data-aos-delay="600">SCALING BRANDS WITH HIGH-END REDESIGNS</div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="grid">
+            <div class="text-content" data-aos="fade-right">
+                <h2 class="big-title" style="font-size: 3.5rem;">HELLO I'M ABHI</h2>
+                <h2 class="script-text" style="font-size: 4.8rem; margin-top: -20px;">a designer</h2>
+                <div class="red-line"></div>
+                <p style="color: var(--text-gray); font-size: 1.1rem; line-height: 1.8;">
+                    Digital Creator focusing on scaling brands with High-End Design. 
+                    I build Custom Websites and Modern Logos that create premium visual identities.
+                </p>
+                <div style="margin-top: 25px;">
+                    <span style="color: var(--brand-red); font-weight: 700; letter-spacing: 1px;">🚀 DM "START" TO BEGIN YOUR JOURNEY</span>
+                </div>
+            </div>
+            <div data-aos="fade-left" style="text-align: center;">
+                <img src="https://cdn.phototourl.com/free/2026-06-28-332ef8f4-76f2-42c6-a886-e6e7bc2cda61.webp" class="logo-img" alt="Abhi Designs Logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="work">
+        <div style="width: 100%;">
+            <h2 class="big-title" style="font-size: 3.5rem;" data-aos="fade-up">SELECTED</h2>
+            <h2 class="script-text" style="font-size: 4rem; margin-top: -25px;" data-aos="fade-up">Projects</h2>
+            
+            <div class="grid" style="margin-top: 40px;">
+                <a href="https://abhi-designs.github.io/Yb-craft/" target="_blank" class="project-card" data-aos="fade-up">
+                    <img src="https://cdn.phototourl.com/free/2026-06-28-fdbc7c2c-0b44-4e36-9a0f-65896588169f.jpg" class="project-img" alt="YB Craft">
+                    <div class="project-info">
+                        <p>#01 BRAND IDENTITY</p>
+                        <h3>YB Craft</h3>
+                    </div>
+                </a>
+
+                <a href="https://abhi-designs.github.io/Gippyes-studio/" target="_blank" class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://cdn.phototourl.com/free/2026-06-28-75786fcd-888d-49fb-9ce6-f9204adfceb8.jpg" class="project-img" alt="Gippyes Studio">
+                    <div class="project-info">
+                        <p>#02 UI/UX DESIGN</p>
+                        <h3>Gippyes Studio</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="contact-wrap">
+            <h2 class="big-title" style="font-size: 4rem;" data-aos="fade-up">CONNECT</h2>
+            <h2 class="script-text" style="font-size: 4.5rem; margin-top: -20px;" data-aos="fade-up">Let's work together</h2>
+            <div style="margin-top: 50px;">
+                <a href="https://instagram.com/abhi.designs__" target="_blank" class="contact-btn" data-aos="zoom-in">
+                    <i class="fab fa-instagram"></i> abhi.designs__
+                </a>
+                <a href="mailto:abhi.designs11@gmail.com" class="contact-btn" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="far fa-envelope"></i> abhi.designs11@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-bg-text">THANK YOU</div>
+        <div data-aos="zoom-out">
+            <h2 class="big-title" style="font-size: 4.5rem;">THANK YOU</h2>
+            <p class="script-text" style="font-size: 3rem; margin-top: -15px;">For Your Attention</p>
+            <a href="https://instagram.com/abhi.designs__" target="_blank" class="insta-handle-footer">abhi.designs__</a>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({ duration: 1200, once: false, mirror: true });
+
+        // MUSIC LOGIC
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+
+        musicBtn.addEventListener('click', function() {
+            if (music.paused) {
+                music.play();
+                musicIcon.classList.remove('fa-volume-mute');
+                musicIcon.classList.add('fa-volume-up');
+                musicBtn.classList.remove('pulse-btn'); // Stop pulsing once active
+            } else {
+                music.pause();
+                musicIcon.classList.remove('fa-volume-up');
+                musicIcon.classList.add('fa-volume-mute');
+            }
+        });
+
+        // Preloader Logic
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('preloader');
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Re-enable scroll
+                }, 800);
+            }, 2500);
+        });
+    </script>
+</body>
+</html>
