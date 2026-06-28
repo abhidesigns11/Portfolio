@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Abhi | Web & Brand Designer</title>
 
     <!-- FONTS -->
@@ -20,13 +20,21 @@
             --text-gray: #a1a1a1;
         }
 
+        /* FIX: Prevent horizontal scrolling */
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%;
+            overflow-x: hidden; 
+            background-color: var(--bg-black);
+            position: relative;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         
         body { 
-            background-color: var(--bg-black); 
             color: var(--text-white); 
             font-family: 'Poppins', sans-serif; 
-            overflow: hidden; /* Prevent scroll during preloader */
         }
         
         ::selection { background: var(--brand-red); color: white; }
@@ -85,7 +93,6 @@
             background: var(--brand-red);
         }
 
-        /* Pulse animation for the button */
         .pulse-btn {
             animation: pulse-red 2s infinite;
         }
@@ -107,10 +114,10 @@
         .nav-links a { color: var(--text-gray); text-decoration: none; margin-left: 30px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- TYPOGRAPHY --- */
-        .big-title { font-family: 'Montserrat', sans-serif; font-size: clamp(3.5rem, 12vw, 8.5rem); line-height: 0.85; text-transform: uppercase; }
+        .big-title { font-family: 'Montserrat', sans-serif; font-size: clamp(3rem, 10vw, 8.5rem); line-height: 0.85; text-transform: uppercase; }
         .script-text { font-family: 'Sacramento', cursive; color: var(--brand-red); text-transform: none; font-weight: 400; }
 
-        section { padding: 100px 10%; min-height: 100vh; display: flex; align-items: center; }
+        section { padding: 100px 10%; min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; width: 100%;}
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%; }
         .red-line { width: 60px; height: 3px; background: var(--brand-red); margin: 25px 0; }
 
@@ -134,9 +141,8 @@
         .project-img { width: 100%; height: 350px; object-fit: cover; }
         .project-info { padding: 30px; }
         .project-info h3 { font-family: 'Montserrat'; font-size: 1.4rem; margin-bottom: 8px; }
-        .project-info p { color: var(--brand-red); font-weight: 700; font-size: 0.8rem; margin-bottom: 5px; }
 
-        /* --- CONTACT --- */
+        /* --- CONTACT SECTION --- */
         .contact-wrap { text-align: center; width: 100%; }
         .contact-btn { display: inline-flex; align-items: center; gap: 15px; color: var(--text-white); text-decoration: none; font-size: 1.5rem; margin: 20px; font-weight: 600; }
         .contact-btn i { color: var(--brand-red); }
@@ -144,9 +150,13 @@
         /* --- FOOTER --- */
         footer { 
             padding: 150px 0; background: #050505; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; 
+            align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; width: 100%;
         }
-        .footer-bg-text { font-family: 'Montserrat'; font-size: 15vw; color: var(--brand-red); opacity: 0.04; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; }
+        .footer-bg-text { 
+            font-family: 'Montserrat'; font-size: 15vw; color: var(--brand-red); opacity: 0.04; 
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+            white-space: nowrap; pointer-events: none; z-index: 0;
+        }
         .insta-handle-footer { margin-top: 35px; color: var(--text-white); text-decoration: none; font-size: 1.2rem; letter-spacing: 3px; font-weight: 300; opacity: 0.5; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 5px; position: relative; z-index: 5; }
 
         @media (max-width: 800px) { 
@@ -155,13 +165,14 @@
             .big-title { font-size: 3.5rem; } 
             .typing-container { font-size: 8vw; }
             .red-line { margin: 20px auto; }
+            section { padding: 80px 5%; }
             @keyframes typing { from { width: 0 } to { width: 85% } }
         }
     </style>
 </head>
-<body>
+<body style="overflow: hidden;">
 
-    <!-- 1. AUDIO TAG -->
+    <!-- 1. AUDIO TAG (Ensure your file is named music.mp3) -->
     <audio id="bg-music" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
@@ -228,7 +239,7 @@
                 <a href="https://abhi-designs.github.io/Yb-craft/" target="_blank" class="project-card" data-aos="fade-up">
                     <img src="https://cdn.phototourl.com/free/2026-06-28-fdbc7c2c-0b44-4e36-9a0f-65896588169f.jpg" class="project-img" alt="YB Craft">
                     <div class="project-info">
-                        <p>#01 BRAND IDENTITY</p>
+                        <p style="color: var(--brand-red); font-weight: 700; font-size: 0.8rem;">#01 BRAND IDENTITY</p>
                         <h3>YB Craft</h3>
                     </div>
                 </a>
@@ -236,7 +247,7 @@
                 <a href="https://abhi-designs.github.io/Gippyes-studio/" target="_blank" class="project-card" data-aos="fade-up" data-aos-delay="200">
                     <img src="https://cdn.phototourl.com/free/2026-06-28-75786fcd-888d-49fb-9ce6-f9204adfceb8.jpg" class="project-img" alt="Gippyes Studio">
                     <div class="project-info">
-                        <p>#02 UI/UX DESIGN</p>
+                        <p style="color: var(--brand-red); font-weight: 700; font-size: 0.8rem;">#02 UI/UX DESIGN</p>
                         <h3>Gippyes Studio</h3>
                     </div>
                 </a>
@@ -250,10 +261,8 @@
             <h2 class="big-title" style="font-size: 4rem;" data-aos="fade-up">CONNECT</h2>
             <h2 class="script-text" style="font-size: 4.5rem; margin-top: -20px;" data-aos="fade-up">Let's work together</h2>
             <div style="margin-top: 50px;">
-                <a href="https://instagram.com/abhi.designs__" target="_blank" class="contact-btn" data-aos="zoom-in">
-                    <i class="fab fa-instagram"></i> abhi.designs__
-                </a>
-                <a href="mailto:abhi.designs11@gmail.com" class="contact-btn" data-aos="zoom-in" data-aos-delay="200">
+                <!-- EMAIL ONLY AS REQUESTED -->
+                <a href="mailto:abhi.designs11@gmail.com" class="contact-btn" data-aos="zoom-in">
                     <i class="far fa-envelope"></i> abhi.designs11@gmail.com
                 </a>
             </div>
@@ -266,6 +275,7 @@
         <div data-aos="zoom-out">
             <h2 class="big-title" style="font-size: 4.5rem;">THANK YOU</h2>
             <p class="script-text" style="font-size: 3rem; margin-top: -15px;">For Your Attention</p>
+            <!-- INSTA KEPT HERE AS REQUESTED -->
             <a href="https://instagram.com/abhi.designs__" target="_blank" class="insta-handle-footer">abhi.designs__</a>
         </div>
     </footer>
@@ -286,7 +296,7 @@
                 music.play();
                 musicIcon.classList.remove('fa-volume-mute');
                 musicIcon.classList.add('fa-volume-up');
-                musicBtn.classList.remove('pulse-btn'); // Stop pulsing once active
+                musicBtn.classList.remove('pulse-btn'); 
             } else {
                 music.pause();
                 musicIcon.classList.remove('fa-volume-up');
@@ -301,7 +311,9 @@
                 loader.style.opacity = '0';
                 setTimeout(() => {
                     loader.style.display = 'none';
-                    document.body.style.overflow = 'auto'; // Re-enable scroll
+                    // Re-enable scroll after preloader
+                    document.body.style.overflowY = 'auto';
+                    document.documentElement.style.overflowY = 'auto';
                 }, 800);
             }, 2500);
         });
